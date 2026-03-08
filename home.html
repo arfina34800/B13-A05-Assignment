@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B13-A05 Assignment</title>
+    tailwind + daisyUI
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+
+     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+     <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <section>
+       <div class="navbar bg-base-100 shadow-sm">
+        <div>
+             <img src="assets/github-logo.png">
+        </div>
+  <div class="flex-1">
+    <h1 class="text-2xl font-bold mb-8  px-4 py-2">GitHub Issues Tracker</h1>
+  </div>
+  <div class="flex gap-2 px-4 py-2">
+    <input type="text" placeholder="Search issues..." class="input input-bordered w-24 md:w-auto" />
+    <div class="dropdown dropdown-end">
+      <div>
+    <button class="tab-btn px-6 py-2 rounded bg-blue-700 text-white">New Issue</button>
+      </div>
+    </div>
+  </div>
+</div>
+    </section>
+
+    <section class="max-w-6xl mx-auto px-4 py-10 shadow space-y-10">
+         <div class="flex gap-4 mb-6">
+      <button class="tab-btn px-6 py-2 rounded bg-blue-700 text-white" data-tab="all">All</button>
+      <button class="tab-btn px-6 py-2 rounded bg-gray-200 text-gray-700" data-tab="Open">Open</button>
+      <button class="tab-btn px-6 py-2 rounded bg-gray-200 text-gray-700" data-tab="Closed">Closed</button>
+    </div>
+    </section>
+
+<div class="grid grid-cols-4 gap-4 mt-6">
+
+  <!-- Issue Card -->
+  <div class="bg-white p-4 rounded border">
+
+      <h3 class="font-semibold">
+        Fix Navigation Menu On Mobile Devices
+      </h3>
+
+      <p class="text-gray-500 text-sm mt-2">
+        The navigation menu doesn't collapse properly on mobile devices.
+      </p>
+
+      <div class="flex gap-2 mt-3">
+        <span class="bg-red-100 text-red-600 px-2 py-1 rounded text-xs">
+          BUG
+        </span>
+
+        <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">
+          HELP WANTED
+        </span>
+      </div>
+
+  </div>
+
+</div>
+   
+</body>
+</html>
