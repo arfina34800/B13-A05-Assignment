@@ -1,98 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B13-A05 Assignment</title>
-<!-- font awesome -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- daisy and tailwind  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- font  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Assignment 5</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="shadow-sm">
+      <nav class="flex flex-col pt-5 gap-y-3 md:gap-y-0 md:pt-0 md:flex-row justify-between max-w-[90%] sm:max-w-[70%] md:max-w-[95%] mx-auto">
+        <div class="logo flex justify-center items-center gap-2">
+          <div class="w-9 h-9">
+            <img src="./assets/github-logo.png" alt="logo" class="w-full" />
+          </div>
+          <h1 class="font-bold text-xl sm:text-2xl">GitHub Issues Tracker</h1>
+        </div>
+        <div class="flex gap-2 p-4 justify-center items-center">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search here..."
+            class="input input-bordered max-w-[90%] sm:max-w-full shadow-sm"
+          />
+          <button
+            onclick="loadSearchIssues()"
+            class="btn bg-[#4A00FF] text-white border-none"
+          >
+          + New Issue
+          </button>
+        </div>
+      </nav>
+    </header>
 
-    <!-- tailwind + daisyUI -->
-     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <main class="my-14">
+      <!-- tabs -->
+      <section class="max-w-[90%] sm:max-w-5/6 mx-auto">
+        <div
+          id="tabs-container"
+          class="bg-white border gap-1 sm:gap-2 border-gray-100 flex items-center flex-wrap shadow-sm p-4"
+        >
+          <button class="btn px-6 sm:px-10 btn-first  tabs-btn">All</button>
+          <button class="btn px-6 sm:px-10 tabs-btn">Open</button>
+          <button class="btn px-6 sm:px-10 tabs-btn">Closed</button>
+        </div>
+      </section>
 
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-
-     <link rel="stylesheet" href="styles/style.css">
-</head>
-<body class="bg-gray-100">
-
-<header>
-  <div class="bg-white shadow p-4 flex justify-between items-center">
-
-<div class="flex items-center gap-2 font-semibold text-2xl">
-  <img class="h-8 w-8" src="assets/github-logo.png">
- GitHub Issues Tracker
-</div>
-
-<div class="flex gap-2">
-<input id="searchInput"
-type="text"
-placeholder="Search issues..." 
-class="border px-4 py-2 rounded text-sm"
->
-
-<button
-class="bg-blue-600 text-white px-4 py-2 rounded text-sm">
-+ New Issue
-</button>
-
-</div>
-
-</div>
-</header>
-
-<div class="mt-4 flex  gap-3 px-4 bg-white p-4 rounded-lg shadow w-10/12 mx-auto">
-
-<button id="allBtn" onclick="filterIssues('all')"
-class="px-4 py-1 bg-blue-600 text-white rounded">
-All
-</button>
-
-<button id="openBtn" onclick="filterIssues('open')"
-class="px-4 py-1 border rounded">
-Open
-</button>
-
-<button id="closedBtn"  onclick="filterIssues('closed')"
-class="px-4 py-1 border rounded">
-Closed
-</button>
-
-</div>
-
-<div class="mt-4 bg-white p-4 rounded-lg shadow flex items-center justify-between w-10/12 mx-auto">
-  <div class="flex items-center gap-3">
+      <!-- issues section  -->
+      <section class="max-w-[90%] sm:max-w-5/6 mx-auto mt-14">
+        <!-- issues head  -->
+        <div class="head-container flex flex-col sm:flex-row justify-between p-4 shadow-sm items-start sm:items-center gap-y-5 sm:gap-y-0">
+          <div class="left flex  justify-center items-center gap-2.5">
+            <div class="text-center">
+              <img  src="./assets/Aperture.png" alt="img" class="w-full"/>
+            </div>
+            <div>
+              <h2 class="font-semibold text-2xl"><span id="total-issues">0</span> Issues</h2>
+              <p class="text-gray-500">Track and manage your project issues</p>
+            </div>
+          </div>
+          <div class="right flex justify-center items-center gap-5">
+            <p class="flex justify-center items-center
+            gap-1 "><span><i class="fa-solid fa-circle text-green-500"> </i></span><span class="text-lg font-medium">Open</span></p>
+            <p class="flex justify-center items-center
+            gap-1"><span><i class="fa-solid fa-circle text-purple-500"></i></span></i><span class="text-lg font-medium">Closed</span></p>
+          </div>
+        </div>
     
-    <div class="bg-purple-100 p-2 rounded-lg">
-      <img src="assets/Aperture.png" class="w-8 h-8" alt="icon">
-    </div>
+        <!-- card section  -->
+        <div id="card-container" class="shadow-sm p-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5">
+           
 
-    <div>
-      <p id="issueCount" class="font-bold text-gray-800">50 Issues</p>
-      <p class="text-sm text-gray-500">Track and manage your project issues</p>
-    </div>
+        </div>
+        <!-- loading spinner -->
+        <div id="loading-spinner" class="hidden">
+            <div class="flex justify-center items-center p-20 shadow-lg">
+              <span class="loading loading-spinner loading-xl"></span>
+            </div>
+        </div>
+      </section>
 
-  </div>
-  <div class="flex items-center gap-6 text-sm">
+      <!-- modal  -->
 
-    <div class="flex items-center gap-1">
-      <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-      <span class="text-gray-800">Open</span>
-    </div>
+      <dialog id="issue_modal" class="modal">
+        
+        <div id="modal-container" class="modal-box">
+          
+        </div>
+        
+        <div id="modal-loading-spinner" class="modal-box hidden">
+            <div class="flex justify-center items-center p-20 ">
+              <span class="loading loading-spinner loading-xl"></span>
+            </div>
+        </div>
+      </dialog>
+      
+    </main>
 
-    <div class="flex items-center gap-1">
-      <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
-      <span class="text-gray-800">Closed</span>
-    </div>
-
-  </div>
-
-</div>
-
-<section id="word-container" class="bg-gray-100 w-10/12 mx-auto"></section>
-
-<script></script>
-
-   
-</body>
+    <script src="./script.js"></script>
+  </body>
 </html>
