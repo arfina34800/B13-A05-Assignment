@@ -175,6 +175,7 @@ function issuesCount(status, arr = []) {
   }
 }
 
+
 function displayAllIssues(issues) {
   const issuesContainer = document.getElementById("card-container");
   issuesContainer.innerHTML = "";
